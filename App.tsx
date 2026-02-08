@@ -4,7 +4,7 @@ import { AppView, UserStoryData, HealingResult } from './types';
 import LuminaHome from './components/LuminaHome';
 import AetherSession from './components/AetherSession';
 import BloomDashboard from './components/BloomDashboard';
-import { processHealingJourney } from './services/geminiService';
+import { processHealingJourney } from './services/aliyunService';
 
 const App: React.FC = () => {
   const [view, setView] = useState<AppView>(AppView.LANDING);
