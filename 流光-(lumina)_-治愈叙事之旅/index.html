@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>流光 Lumina | 治愈叙事</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ec4899",
+              secondary: "#D1A3FF",
+              "background-light": "#fdf8fd",
+              "background-dark": "#0f172a",
+            },
+            fontFamily: {
+              sans: ["Plus Jakarta Sans", "Noto Sans SC", "sans-serif"],
+              display: ["Playfair Display", "Noto Sans SC", "serif"],
+              outfit: ["Outfit", "Noto Sans SC", "sans-serif"],
+              quicksand: ["Quicksand", "Noto Sans SC", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "24px",
+              'xl': '32px',
+              '2xl': '48px',
+              '3xl': '64px',
+            },
+            animation: {
+              'float': 'floating 6s ease-in-out infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'glow': 'glow 3s ease-in-out infinite alternate',
+            },
+            keyframes: {
+              floating: {
+                '0%, 100%': { transform: 'translate(0, 0px)' },
+                '50%': { transform: 'translate(0, 20px)' },
+              },
+              glow: {
+                'from': { 'box-shadow': '0 0 20px rgba(236, 72, 153, 0.2), 0 0 40px rgba(236, 72, 153, 0.1)' },
+                'to': { 'box-shadow': '0 0 40px rgba(236, 72, 153, 0.4), 0 0 80px rgba(236, 72, 153, 0.2)' },
+              }
+            }
+          },
+        },
+      };
+    </script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #e0f2fe 0%, #fce7f3 50%, #f3e8ff 100%);
+        }
+        .dark .gradient-bg {
+            background: linear-gradient(135deg, #0c4a6e 0%, #831843 50%, #4c1d95 100%);
+        }
+        .scroll-paper {
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .dark .scroll-paper {
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0",
+    "recharts": "https://esm.sh/recharts@^3.7.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="transition-colors duration-500 overflow-x-hidden">
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

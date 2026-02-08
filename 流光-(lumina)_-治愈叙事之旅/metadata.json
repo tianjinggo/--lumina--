@@ -1,0 +1,8 @@
+
+{
+  "name": "流光 (Lumina): 治愈叙事之旅",
+  "description": "一款心理健康应用，利用 Gemini API 将个人故事转化为治愈性的漫画叙事和深度内省引导。",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
