@@ -1,7 +1,11 @@
 import { HealingResult } from "../types";
 
-const ACCESS_KEY_ID = import.meta.env.VITE_ALIYUN_ACCESS_KEY_ID;
-const ACCESS_KEY_SECRET = import.meta.env.VITE_ALIYUN_ACCESS_KEY_SECRET;
+// DashScope API Key - 使用 sk- 前缀 + AccessKey ID + Secret 组合
+const DASHSCOPE_API_KEY = import.meta.env.VITE_ALIYUN_ACCESS_KEY_ID
+  ? `sk-${import.meta.env.VITE_ALIYUN_ACCESS_KEY_ID}${import.meta.env.VITE_ALIYUN_ACCESS_KEY_SECRET}`
+  : '';
+
+console.log('DashScope API Key loaded:', DASHSCOPE_API_KEY ? 'Yes' : 'No');
 
 // 使用 DashScope API 调用通义千问
 export const processHealingJourney = async (story: string): Promise<HealingResult> => {
@@ -25,31 +29,26 @@ export const processHealingJourney = async (story: string): Promise<HealingResul
 
   try {
     // 使用通义千问 API
-    const response = await fetch('https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation', {
+    const response = await fetch('https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${ACCESS_KEY_SECRET}`,
+        'Authorization': `Bearer ${DASHSCOPE_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         model: 'qwen-turbo',
-        input: {
-          messages: [
-            {
-              role: 'system',
-              content: '你是一位温暖、富有同理心的心理治愈导师。你善于用隐喻和诗意的方式帮助人们反思和成长。总是返回 JSON 格式的结果。'
-            },
-            {
-              role: 'user',
-              content: prompt
-            }
-          ]
-        },
-        parameters: {
-          result_format: 'message',
-          temperature: 0.8,
-          max_tokens: 1500
-        }
+        messages: [
+          {
+            role: 'system',
+            content: '你是一位温暖、富有同理心的心理治愈导师。你善于用隐喻和诗意的方式帮助人们反思和成长。总是返回 JSON 格式的结果。'
+          },
+          {
+            role: 'user',
+            content: prompt
+          }
+        ],
+        temperature: 0.8,
+        max_tokens: 1500
       })
     });
 
@@ -62,8 +61,8 @@ export const processHealingJourney = async (story: string): Promise<HealingResul
     const data = await response.json();
     console.log('阿里云 API 响应:', data);
 
-    // 解析响应
-    const content = data?.output?.choices?.[0]?.message?.content;
+    // 解析响应 - 使用 OpenAI 兼容格式
+    const content = data?.choices?.[0]?.message?.content;
 
     if (!content) {
       throw new Error('API 返回数据格式错误');
