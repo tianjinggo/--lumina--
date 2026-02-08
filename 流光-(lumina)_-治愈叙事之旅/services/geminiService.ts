@@ -2,7 +2,7 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { HealingResult } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
 
 export const processHealingJourney = async (story: string): Promise<HealingResult> => {
   const prompt = `
