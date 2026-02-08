@@ -1,0 +1,12 @@
+{
+  "buildCommand": "cd \"流光-(lumina)_-治愈叙事之旅\" && npm run build",
+  "outputDirectory": "流光-(lumina)_-治愈叙事之旅/dist",
+  "installCommand": "cd \"流光-(lumina)_-治愈叙事之旅\" && npm install",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
