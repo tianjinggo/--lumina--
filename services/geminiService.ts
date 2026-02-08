@@ -21,7 +21,7 @@ export const processHealingJourney = async (story: string): Promise<HealingResul
 
   try {
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-2.0-flash-exp',
       contents: prompt,
       config: {
         responseMimeType: "application/json",
@@ -42,6 +42,7 @@ export const processHealingJourney = async (story: string): Promise<HealingResul
     return JSON.parse(response.text.trim()) as HealingResult;
   } catch (error) {
     console.error("Gemini API Error:", error);
+    console.error("Error details:", JSON.stringify(error, null, 2));
     // 回退数据
     return {
       sessionTitle: "新的篇章",
